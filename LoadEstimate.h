@@ -154,12 +154,17 @@ typedef void (*TRK4)( void f(double, double*, double*),
 // методом симпсона
 typedef double (*Tqsimp)( double (*func)(double), double a, double b );
 //---------------------------------------------------------------------------
+typedef void (*TGetMagField)(double t, double *x, double *B);
+// вычисление вектора магнитной индукции Земли на момент t (количество секунд от 01.01.2018 00:00:00 ДМВ)
+// для КА с фазовым вектором x в J2000. Результат запишется в B (вектор из 3 элементов, нТл) в J2000
+//---------------------------------------------------------------------------
 class TMathLib
 {
  private:
   HINSTANCE Lib;
  public:
   TToGreenwich ToGreenwich;
+  TGetMagField GetMagField;
   TInit Init;
   TCloseLib CloseLib;
   Tfact  fact;
